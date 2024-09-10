@@ -3,7 +3,7 @@ import pandas as pd
 
 st.title('🤖 Machine Learning App')
 
-st.info('This app bulds a machine learning model')
+st.info('This app builds a machine learning model')
 
 with st.expander('Data'):
   st.write('**Raw data**')
@@ -17,3 +17,6 @@ with st.expander('Data'):
   st.write('**y**')
   y = df.species
   y
+
+with st.expander('Data Visualization')
+  st.scatter_chart(data=df, x='bill_length_mm', y='body_mass_g', color='species')
