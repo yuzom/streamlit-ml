@@ -16,8 +16,8 @@ with st.expander('Data'):
   X_raw
 
   st.write('**y**')
-  y = df.species
-  y
+  y_raw = df.species
+  y_raw
 
 with st.expander('Data visualization'):
   st.scatter_chart(data=df, x='bill_length_mm', y='body_mass_g', color='species')
@@ -32,17 +32,17 @@ with st.sidebar:
   body_mass_g = st.slider('Body mass (g)', 2700.0, 6300.0, 4207.0)
   gender = st.selectbox('Gender', ('male', 'female'))
 
-  # Create dataframe for input features
-  data = {'island': island,
-          'bill_length_mm': bill_length_mm,
-          'bill_depth_mm': bill_depth_mm,
-          'flipper_length_mm': flipper_length_mm,
-          'body_mass_g': body_mass_g,
-          'sex': gender
-         }
-  
-  input_df = pd.DataFrame(data, index=[0])
-  input_penguins = pd.concat([input_df, X_raw], axis=0)
+# Create dataframe for input features
+data = {'island': island,
+        'bill_length_mm': bill_length_mm,
+        'bill_depth_mm': bill_depth_mm,
+        'flipper_length_mm': flipper_length_mm,
+        'body_mass_g': body_mass_g,
+        'sex': gender
+       }
+
+input_df = pd.DataFrame(data, index=[0])
+input_penguins = pd.concat([input_df, X_raw], axis=0)
 
 with st.expander('Input features'):
   st.write('**Input penguin**')
@@ -51,6 +51,7 @@ with st.expander('Input features'):
   input_penguins
 
 # Data prep
+
 # Encode X from categorical to numerical
 encode = ['island', 'sex']
 df_penguins = pd.get_dummies(input_penguins, prefix=encode)
@@ -60,6 +61,7 @@ input_row = df_penguins[:1]
 target_mapper = {'Adelie': 0,
                 'Chinstrap': 1,
                 'Gentoo': 2}
+
 def target_encode(val):
   return target_mapper[val]
 
