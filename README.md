@@ -3,7 +3,7 @@
 ⬆️ (Replace above with your app's name)
 ```
 
-Description of the app ...
+This is a machine learning app built using streamlit.
 
 ## Demo App
 
